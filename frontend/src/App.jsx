@@ -11,7 +11,7 @@ import {
 } from 'recharts'
 
 // Configuration - Using Vite Proxy for stability
-const API_BASE_URL = '/api'
+const API_BASE_URL = 'https://network-anomaly-backend.onrender.com'
 
 // --- Components (Defined in the same file to ensure paths never fail) ---
 
