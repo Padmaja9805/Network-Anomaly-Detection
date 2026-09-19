@@ -18,8 +18,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 model = joblib.load("model.pkl")
 scaler = joblib.load("scaler.pkl")
 
-TSHARK_PATH = r"C:\Program Files\Wireshark\tshark.exe"
-
+TSHARK_PATH = os.getenv("TSHARK_PATH", "/usr/bin/tshark")
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -151,4 +150,9 @@ def upload_file():
 if __name__ == "__main__":
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     print("DEBUG: Starting Flask server on port 5000...")
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+
+    app.run(
+        host="0.0.0.0",
+        port=port
+    )
